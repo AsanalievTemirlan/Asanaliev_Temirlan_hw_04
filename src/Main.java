@@ -18,7 +18,7 @@ public class Main {
             playRound();
         }
     }
-    public static void resurrection() { //Воскрешение Ведьмако
+    public static void resurrection() { //Воскрешение Ведьмаком
         if (heroesHealth[6] > 0) {
             for (int i = 0; i < heroesHealth.length; i++) {
                 if (heroesHealth[i] == 0) {
