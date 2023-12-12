@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class Main {
-    public static int bossHealth = 1700;
+    public static int bossHealth = 17600;
     public static int bossDamage = 50;
     public static String bossDefence;
     public static int[] heroesHealth = {280, 270, 250, 250, 500, 150, 200, 280};
@@ -19,13 +19,13 @@ public class Main {
         }
     }
     public static void resurrection() { //Воскрешение Ведьмаком
-        int[] heroesHealthFixed = {280, 270, 250, 250, 500, 150, 200, 280};
+//        int[] heroesHealthFixed = {280, 270, 250, 250, 500, 150, 200, 280};
         if (heroesHealth[6] > 0) {
             for (int i = 0; i < heroesHealth.length; i++) {
                 if (heroesHealth[i] == 0) {
-                    heroesHealth[i] = heroesHealthFixed[i];
-                    heroesHealth[6] = 0;
+                    heroesHealth[i] += heroesHealth[6];
                     System.out.println(heroesName[i] + " was resurrected");
+                    heroesHealth[6] = 0;
                     break;
                 }
             }
