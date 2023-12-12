@@ -18,8 +18,7 @@ public class Main {
             playRound();
         }
     }
-    public static void resurrection() { //Воскрешение Ведьмаком
-//        int[] heroesHealthFixed = {280, 270, 250, 250, 500, 150, 200, 280};
+    public static void resurrection() { //Воскрешение Ведьмако
         if (heroesHealth[6] > 0) {
             for (int i = 0; i < heroesHealth.length; i++) {
                 if (heroesHealth[i] == 0) {
