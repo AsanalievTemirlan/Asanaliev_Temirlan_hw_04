@@ -12,7 +12,7 @@ import java.util.Random;
 // вследствие чего босс пропускает 1 раунд и не наносит урон героям. // random.nextBoolean(); - true, false
 
 public class Main {
-    public static int bossHealth = 700;
+    public static int bossHealth = 1700;
     public static int bossDamage = 50;
     public static String bossDefence;
     public static int[] heroesHealth = {280, 270, 250, 250, 500, 150, 200, 280};
@@ -47,7 +47,7 @@ public class Main {
             for (int i = 0; i < heroesHealth.length; i++) {
                 if (i != 3 && heroesHealth[i] < 100) {
                     heroesHealth[i] += 30;
-                    System.out.println(heroesName[i] + "was cured");
+                    System.out.println(heroesName[i] + " was cured");
                     break;
                 }
             }
@@ -93,27 +93,32 @@ public class Main {
         Random random = new Random();
         int golemDamage = (int) (bossDamage * 0.2);
         int newBossDamage = (int) (bossDamage * 0.8);
-        for (int i = 0; i < heroesHealth.length; i++) {
+        boolean thorAction = random.nextBoolean();
+        if(thorAction){
+            for (int i = 0; i < heroesHealth.length; i++) {
 
-            if (heroesHealth[i] > 0) {
-                if (heroesHealth[i] - bossDamage < 0) {
+                if (heroesHealth[i] > 0) {
+                    if (heroesHealth[i] - bossDamage < 0) {
                     heroesHealth[i] = 0;
-                } else {
-                    if (heroesHealth[i] != heroesHealth[4] && heroesHealth[4] > 0){
-                        heroesHealth[i] = heroesHealth[i] - newBossDamage;
-                        heroesHealth[4] = heroesHealth[4] - golemDamage;
+                    } else {
+                        if (heroesHealth[i] != heroesHealth[4] && heroesHealth[4] > 0){
+                            heroesHealth[i] = heroesHealth[i] - newBossDamage;
+                            heroesHealth[4] = heroesHealth[4] - golemDamage;
+                        }
+                        else{
+                        heroesHealth[i] = heroesHealth[i] - bossDamage;
+                        }
                     }
-                    else{
-                    heroesHealth[i] = heroesHealth[i] - bossDamage;
+                    boolean luck = random.nextBoolean();
+                    if (heroesHealth[i] == heroesHealth[5] && luck && heroesHealth[5] < 150) {
+                        heroesHealth[5] += 50;
+                        System.out.println("The lucky guy was able to dodge");
                     }
-                }
-                boolean luck = random.nextBoolean();
-                if (heroesHealth[i] == heroesHealth[5] && luck && heroesHealth[5] < 150) {
-                    heroesHealth[5] += 50;
-                    System.out.println("The lucky guy was able to dodge");
-                }
 
+                }
             }
+        }else {
+            System.out.println("Boss stunned");
         }
         return false;
     }
